@@ -1,0 +1,40 @@
+{% extends "layout.njk" %}
+
+{% block head %}
+    <title>portfolio</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+{%endblock%}
+
+{% block content %}
+
+        <div id="wrapper">
+            <h1>Rodrigo Lessa</h1>
+        </div>
+        
+        <section class="cards">
+
+        {% for item in items %}
+            <div class="card" id="{{item.id}}">
+                <div class="card-image-container {{'featured-wrapper' if item.featured}} ">
+                    <img src="https://img.youtube.com/vi/{{item.id}}/0.jpg" alt="imagem de {{item.title}}">
+                    {% if item.featured %}
+                        <div class="featured">Featured</div>
+                    {% endif %}
+                </div>
+                <div class="card_content">
+                    <p>{{item.title}}</p>
+                </div>
+                <div class="card_info">
+                    <p>{{item.duration}}</p>
+                    <p class="card_price">{{item.price}}</p>
+                </div>
+            </div>
+        {% endfor %}  
+        </section>
+       
+       
+        <script src="/scripts.js"></script>
+        
+   {% endblock %}
+  

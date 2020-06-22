@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        {% block head %}
+            
+            <title>Lanch Base</title>
+
+        {% endblock %}
+        <link rel="stylesheet" href="/style.css">
+
+    </head>
+    <body>
+        <header>
+            <div class="links">
+                <!-- div é uma caixa -->
+                <!-- usa-se o http ou https para sair do documento(servidor) -->
+
+                <a href="/">Sobre</a>
+                <a href="/portfolio">Trabalhos</a>
+
+            </div>
+        </header>
+
+        {% block content %}
+
+        {% endblock %}
+
+    </body>
+</html>
