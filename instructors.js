@@ -1,7 +1,28 @@
 const fs = require('fs')
 const data = require("./data.json")
+const {age, date} = require("./utils")
+
+// SHOW
+exports.show = (req,res) => {
+    // req.params -> usa-se os :
+    const {id} = req.params
+    const foundInstructor = data.instructors.find((instructor)=>{
+        return id == instructor.id 
+    })
+    if (!foundInstructor) return res.send("Instructor not found!")
+
+    const instructor = {
+        ...foundInstructor,// coloca tudo que tem dentro do objeto
+        age: age(foundInstructor.birth),
+        service: foundInstructor.services.split(","),
+        created_at: new Intl.DateTimeFormat('pt-BR').format(foundInstructor.created_at),
+    }
+
+    return res.render("./instructors/show", {instructor})
+}
+
 // CREATE
-exports.post = (req, res)=>{
+exports.post = (req, res) => {
     //req.body
     // constructor é uma função que cria um objeto
     // return res.send(keys) // ["avatar_url",  "name",  "birth",  "gender",  "services" ]
@@ -15,27 +36,28 @@ exports.post = (req, res)=>{
             // se estiver um campo vaziu, retorna o erro acima
             // se usar só uma linha após o if não precisa de {}
     }
-    let {avatar_url, birth, created_at, id, name, services, gender} = req.body
+    let {avatar_url, birth, name, services, gender} = req.body
 
     // mudar a data de nascimento
-    birth = Date.parse(req.body.birth)
+    birth = Date.parse(birth)
 
     // pegar a data do sistema
-    created_at = Date.now()
+    const created_at = Date.now()
 
     // inserindo chave primária -> number é outro constructor
-    id = Number(data.instructors.length + 1)
+    const id = Number(data.instructors.length + 1)
     // desestruturando:
     
 
     // inserindo itens com o push, usa o objeto como parâmetro para organizar os dados
     data.instructors.push({
-        avatar_url,
-        birth, created_at, 
         id, 
         name, 
+        avatar_url,
+        birth, 
         services, 
-        gender
+        gender,
+        created_at 
     }) 
     // "data.json" -> local
     // JSON constructor 
@@ -48,6 +70,22 @@ exports.post = (req, res)=>{
     })
     // return res.send(req.body) //{"avatar_url": "",  "name": "",  "birth": "",  "gender": "M",  "services": ""}
 }
-// UPDATE
+// EDIT
+
+exports.edit = (req, res)=>{
+    // req.params -> usa-se os :
+    const {id} = req.params
+    const foundInstructor = data.instructors.find((instructor)=>{
+        return id == instructor.id 
+    })
+    if (!foundInstructor) return res.send("Instructor not found!")
+
+    const instructor = {
+        ...foundInstructor,
+        birth: date(foundInstructor.birth)
+    }
+
+    return res.render('instructors/edit', { instructor })
+}
 
 // DELETE
