@@ -1,13 +1,18 @@
 const express = require("express")
 const nunjucks = require("nunjucks")
 const routes = require("./routes")
+const methodOverride = require("method-override")
 
 const server = express()
 // responsável por fazer  funcionar o req.body 
 server.use(express.urlencoded({extended:true}))
 
 server.use(express.static('public'))
+// usar o put e delete
+server.use(methodOverride('_method'))
+
 server.use(routes)
+
 
 // Configurar tamplate engine
 

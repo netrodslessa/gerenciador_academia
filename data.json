@@ -1,31 +1,23 @@
 {
+  "members":[],
   "instructors": [
     {
-      "avatar_url": "https://source.unsplash.com/collection/3465564/500x500",
-      "birth": 1593561600000,
-      "created_at": 1593017096344,
       "id": 1,
-      "name": "Adilson Souza e Silva Junior",
-      "services": "sedentarismo",
-      "gender": "F"
+      "name": "Instrutor 1",
+      "avatar_url": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
+      "birth": 631929600000,
+      "services": "crossfit, musculação",
+      "gender": "F",
+      "created_at": 1593103235143
     },
     {
       "id": 2,
-      "name": "Adilson Souza e Silva Junior",
-      "avatar_url": "http://google.com",
-      "birth": 1593043200000,
-      "services": "sedentarismo, preguiça, cansaço",
-      "gender": "M",
-      "created_at": 1593017155320
-    },
-    {
-      "id": 3,
-      "name": "Adilson Souza e Silva Junior",
-      "avatar_url": "http://google.com",
-      "birth": 598406400000,
-      "services": "sedentarismo",
-      "gender": "M",
-      "created_at": 1593022078895
+      "name": "Instrutor 2",
+      "avatar_url": "https://images.unsplash.com/photo-1548690312-e3b507d8c110?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80",
+      "birth": 567993600000,
+      "services": "crossfit, musculação, natação",
+      "gender": "F",
+      "created_at": 1593103290488
     }
   ]
 }
