@@ -1,6 +1,7 @@
 const express = require('express')
 const routes = express.Router()
-const instructors = require("./instructors")
+const instructors = require("./controllers/instructors")
+const members = require("./controllers/members")
 
 routes.get('/', (req, res)=>{
     return res.redirect('/instructors')
@@ -8,9 +9,7 @@ routes.get('/', (req, res)=>{
 
 routes.get("/instructors", instructors.index)
 
-routes.get("/instructors/create", (req, res)=>{
-    return res.render("instructors/create")
-})
+routes.get("/instructors/create", instructors.create)
 
 routes.get('/instructors/:id', instructors.show)
 

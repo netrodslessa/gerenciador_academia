@@ -1,6 +1,6 @@
 const fs = require('fs')
-const data = require("./data.json")
-const {age, date} = require("./utils")
+const data = require("../data.json")
+const {age, date} = require("../utils")
 
 // INDEX -> TABLE
 
@@ -28,7 +28,7 @@ exports.show = (req,res) => {
     return res.render("./instructors/show", {instructor})
 }
 
-// CREATE
+// POST
 exports.post = (req, res) => {
     //req.body
     // constructor é uma função que cria um objeto
@@ -77,6 +77,12 @@ exports.post = (req, res) => {
     })
     // return res.send(req.body) //{"avatar_url": "",  "name": "",  "birth": "",  "gender": "M",  "services": ""}
 }
+
+// CREATE
+exports.create = (req, res)=>{
+    return res.render("instructors/create")
+}
+
 // EDIT
 
 exports.edit = (req, res)=>{

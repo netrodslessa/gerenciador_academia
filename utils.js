@@ -23,6 +23,6 @@ module.exports = {
         // DD
         const day = `0${date.getUTCDate()}`.slice(-2)
 
-        return `${year}-${month}-${day}`
+        return `${year}-${month}-${day}` // iso
     }
 }

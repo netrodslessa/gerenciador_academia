@@ -1,6 +1,6 @@
 const fs = require('fs')
-const data = require("./data.json")
-const {age, date} = require("./utils")
+const data = require("../data.json")
+const {age, date} = require("../utils")
 
 // INDEX -> TABLE
 
@@ -20,10 +20,15 @@ exports.show = (req,res) => {
 
     const member = {
         ...foundMember,// coloca tudo que tem dentro do objeto
-        age: age(foundMember.birth),
+        age: age(foundMember.birth)
     }
 
     return res.render("./members/show", {member})
+}
+// CREATES
+
+exports.create = (req, res)=>{
+    return res.render("members/create")
 }
 
 // POST
@@ -41,28 +46,24 @@ exports.post = (req, res) => {
             // se estiver um campo vaziu, retorna o erro acima
             // se usar só uma linha após o if não precisa de {}
     }
-    let {avatar_url, birth, name, services, gender} = req.body
 
     // mudar a data de nascimento
-    birth = Date.parse(birth)
-
-    // pegar a data do sistema
-    const created_at = Date.now()
+    birth = Date.parse(req.body.birth)
 
     // inserindo chave primária -> number é outro constructor
-    const id = Number(data.members.length + 1)
+    let id = 1
+    const lastId =  data.members[data.members.length -1].id
+    if(lastId){
+        id = lastId + 1
+    }
     // desestruturando:
     
 
     // inserindo itens com o push, usa o objeto como parâmetro para organizar os dados
     data.members.push({
+        ...req.body,
         id, 
-        name, 
-        avatar_url,
-        birth, 
-        services, 
-        gender,
-        created_at 
+        birth
     }) 
     // "data.json" -> local
     // JSON constructor 
@@ -75,11 +76,7 @@ exports.post = (req, res) => {
     })
     // return res.send(req.body) //{"avatar_url": "",  "name": "",  "birth": "",  "gender": "M",  "services": ""}
 }
-// CREATES
 
-exports.create = (req, res)=>{
-    return res.render("members/create")
-}
 
 // EDIT
 
