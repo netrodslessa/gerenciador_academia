@@ -157,7 +157,8 @@ a:hover::after{
 
 /* === FORMS === */
 
-input{
+input,
+select{
     width: 100%;
     outline: none;
     color: var(--gray3);
@@ -265,3 +266,5 @@ tbody tr td:last-child a,
 td:last-child{
     text-align: center;
 }
+
+
