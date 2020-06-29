@@ -17,7 +17,7 @@ module.exports = {
                 return res.send('Please, fill all fields!')
         }
         instructor.create(req.body, (instructor)=>{
-            return res.redirect(`/instructors/${results.rows[0].id}`)
+            return res.redirect(`/instructors/${instructor.id}`)
         }) 
     },
     show (req, res) {
@@ -25,7 +25,7 @@ module.exports = {
             if(!instructor) return res.send("Instructor not found!")
 
             instructor.age = age(instructor.birth)
-            instructor.services = instructor.services.split(',')
+            instructor.services = instructor.services.split(", ")
             instructor.created_at = date(instructor.created_at).format
             return res.render("instructors/show", { instructor })
         })
@@ -42,14 +42,16 @@ module.exports = {
         const keys = Object.keys(req.body)
         for(key of keys) {
             if(req.body[key] == ""){
-                return res.send
+                return res.send("Instructor not found!")
             }
         }
         instructor.update(req.body, ()=>{
-            return res.redirect(`instructors/${req}`)
+            return res.redirect(`instructors/${req.body.id}`)
         })
     },
     delete (req, res) {
-        return 
+        instructor.delete(req.body.id, ()=>{
+            return res.redirect(`instructors`)
+        }) 
     },
 }
