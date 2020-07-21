@@ -1,5 +1,5 @@
 const {age, date} = require("../../lib/utils")
-const member = require("../models/member")
+const member = require("../models/Member")
 
 
 module.exports = {
@@ -37,7 +37,7 @@ module.exports = {
         member.find(req.params.id, (member)=>{
             if(!member) return res.send("Member not found!")
             member.birth = date(member.birth).iso
-            member.instructorsSelectOptions(function(options){
+            member.instructorsSelectOptions((options)=>{
                 return res.render("members/edit", {member,  instructorOptions: options })
     
             })
